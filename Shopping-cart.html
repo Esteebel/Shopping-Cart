@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping-cart</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0-2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous"> -->
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"/>
+    <style>
+        .all{
+            padding: 0;
+            margin: 0;
+            background-color: rgb(6, 224, 249);
+        }
+        .name{
+            text-align: center;
+            word-spacing: 10px;
+            letter-spacing: 7px;
+            margin-top: 40px;
+            color: rgb(50, 52, 178);
+            font-weight: bold;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 50px;
+        }
+        .line{
+            margin-top: 30px;
+            color: rgb(226, 43, 43);
+        }
+        #form{
+            text-align: center;
+            padding: 15px;
+        }
+        
+        .title{
+            margin-bottom: 20px;
+            text-align: center;
+            text-decoration: underline;
+            color: rgb(204, 8, 64);
+            font-size: 30px;
+            font-weight: bolder;
+        }
+        .tab{
+            width: 70%;
+            border: none;
+            margin-top: 50px;
+            text-align: center;
+        }
+        .tab,th, td{
+            border: 3px solid black;
+            border-collapse: collapse;
+            padding: 10px;
+            margin-left: 150px;
+            color: black;
+            font-size: 25px;
+            color:rgb(11, 11, 10);
+        }
+       .ak{
+        font-family: cursive;
+        font-size: 90px;
+        color: rgb(249, 10, 10);
+       }
+       h3,span{
+        text-align: center;
+       }
+    </style>
+</head>
+<body class="all" style="margin-bottom: 100px;">
+    
+    <div class="rem">
+        <h1 class="name"><img src="../../../../../pictures/Chef's logo.jpg" alt="" width="100px"><span class="ak">A</span>YABA'S <span class="ak">K</span>ITCHEN </h1>
+        <h3> Welcome <span id="greet"></span> </h3>
+        <hr class="line">
+        <h4 class="title">Food Menu</h4>
+    </div>
+    <div>
+        <form id="form">
+            <select class="btn btn-primary color-light " name="Food-Menu" id="foodie" onclick="getPrice(event)">
+                <option value="">Food</option>
+            </select>
+
+            <input type="number" class="price"  id="price" disabled>
+            <input type="text"  class="price" id="location" disabled>
+
+            <button onclick="addButton()" class="add btn btn-success">Add</button>
+        </form>
+        <div class="text-center">
+            <label for="">Total</label>
+            <input class="custom-input text-black col-md-1" type="text" id="total" disabled>
+        </div>
+        <table class="tab">
+            <tr>
+                <th style="padding-left: 20px;"> S/N</th>
+                <th style="padding-left: 50px;">Food Name</th>
+                <th style="padding-left: 50px;">price</th>
+                <th style="padding-left: 50px;">location</th>
+                <th style="padding-left: 50px;">Quantity</th>
+                <th style="padding-left: 50px;">Action</th>
+                
+            </tr>
+        
+            <tbody id="myTable">
+                <tr>
+                    
+                </tr>   
+            </tbody>
+        </table>
+
+        
+
+
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal header -->
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Update to Cart
+                            <i class="fa-solid fa-cart-shopping"></i>
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        </button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <div class="modal-body form-row">  
+                        <select class=" form-control custom-select mb-3  col-md-6 mr-3 text-dark " id ="opt1" onchange="getPrice2(event)" >
+                            <option value="">Select Item</option>
+                        </select>
+                        <input class="form-control custom-input  col-md-2 " type="text"  id="price1" disabled>
+                        <input class="form-control custom-input  col-md-2 " type="text"  id="location1" disabled>
+                    </div>
+
+                    <!-- Modal footert -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="update()">
+                            Update
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/41ed371ce6.js" crossorigin="anonymous"></script>
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+   <script src="shopping-cart.js"></script>
+</body>
+</html>
